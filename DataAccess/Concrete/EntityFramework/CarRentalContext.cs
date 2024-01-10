@@ -8,6 +8,10 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Concrete.EntityFramework
 {
+    /*
+     Entity Framework (EF) kullanarak bir veritabanı bağlantısı kurmak için genellikle DbContext sınıfını kalıtım almanız gerekir. 
+     DbContext sınıfı, Entity Framework tarafından sağlanan temel sınıftır ve veritabanı bağlantısı, tablo ilişkileri, sorgular ve diğer birçok özellikle ilgili nesneleri yönetmek için kullanılır.
+     */
     public class CarRentalContext : DbContext
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
