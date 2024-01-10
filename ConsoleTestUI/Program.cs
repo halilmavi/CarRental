@@ -1,7 +1,9 @@
-﻿using Business.Concrete;
+﻿using Business.Abstract;
+using Business.Concrete;
 using DataAccess.Concrete.EntityFramework;
 using DataAccess.Concrete.InMemory;
 using Entities.Concrete;
+using Entities.DTOs;
 using System.Security.Principal;
 
 
@@ -12,7 +14,7 @@ static void GetCarAll()
     foreach (Car car in carManager.GetAll())
     {
 
-        Console.WriteLine(car.Description);
+        Console.WriteLine(car.CarId +" - "+car.BrandId+" - "+car.ModelYear+" - "+car.DailyPrice+" - " + car.Description);
     }
 }
 
@@ -28,11 +30,27 @@ static void GetByColorId()
     }
 }
 
+
+
+static void GetAllColor()
+{
+    ColorManager colorManager = new ColorManager(new EfColorDal());
+
+    foreach (Color color in colorManager.GetAll())
+    {
+        Console.WriteLine(color.ColorId + " " + color.ColorName);
+    }
+}
+
+
 //GetCarAll();
 //GetByColorId();
+//GetAllColor();
+
+CarManager carManager = new CarManager(new EfCarDal());
 
 
-CarManager car = new CarManager(new EfCarDal());
-Car car1 = new Car() {BrandId=3,CarName="F",ColorId=1,DailyPrice=0,Description= "Beyaz Ford Focus",ModelYear=2020};
-
-car.Add(car1);
+foreach(CarDetailDto carDetail in carManager.GetCarDetails() )
+{
+    Console.WriteLine(carDetail.CarId+" - "+carDetail.ColorName+" - " + carDetail.BrandName+" - "+carDetail.DailyPrice);
+}
