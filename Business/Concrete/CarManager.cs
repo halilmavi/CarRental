@@ -19,16 +19,15 @@ namespace Business.Concrete
 
         public CarManager(ICarDal carDal)
         {
-            this._carDal = carDal;
+            _carDal = carDal;
         }
 
         public IResult Add(Car car)
         {
             if (car.DailyPrice > 0)
             {
-
-                return new SuccessResult(Messages.Added);
                 _carDal.Add(car);
+                return new SuccessResult(Messages.Added);
             }
             else
             {
